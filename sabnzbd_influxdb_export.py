@@ -58,7 +58,7 @@ def qstatus(url,influxdb_client):
             influxdb_client.write_points(json_body)
                 
     except Exception as e:
-        print str(e)
+        print (str(e))
         pass
 
 def server_stats(url,influxdb_client):
@@ -66,10 +66,10 @@ def server_stats(url,influxdb_client):
         data = requests.get('{0}{1}'.format(url, '&mode=server_stats'), verify=False).json()
 
         if data:
-            total = long(data['total'])
-            total_month = long(data['month'])
-            total_week = long(data['week'])
-            total_day = long(data['day'])
+            total = int(data['total'])
+            total_month = int(data['month'])
+            total_week = int(data['week'])
+            total_day = int(data['day'])
 
             json_body = [
             {
@@ -85,7 +85,7 @@ def server_stats(url,influxdb_client):
             influxdb_client.write_points(json_body)
             
     except Exception as e:
-        print str(e)
+        print (str(e))
         pass
 
 def create_database(influxdb_client, database):
